@@ -8,6 +8,7 @@ public class vigenereCipher {
     private String key;
     private String out;
     private String guess;
+    private String alphabet = "abcdefghijklmnopqrstuvwxyz";
     vigenereCipher(String in, String key){
         this.in=in;
         this.key=key;
@@ -17,6 +18,7 @@ public class vigenereCipher {
         else {
             encrypt();
             finish();
+           // table();
         }
         return;
     }
@@ -62,12 +64,24 @@ public class vigenereCipher {
 
     public void table(){
         String[][] test = new String[26][26];
-        int temp=0;
-        for (int i=0; i<26; ++i) {
-            for (int j = 0; j < 26; ++j) {
-                temp += 'A';
-                String[i][j]= temp;
+        for (int j=0;j<26;j++){
+            String temp="";
+            for (int i=0;i<alphabet.length(); ++i) {
+                char a = ((char) (alphabet.charAt(i) + j));
+                if (a > 'z')
+                    temp += (char) (alphabet.charAt(i) - (26 - j));
+                else
+                    temp += ((char) (alphabet.charAt(i) + j));
 
+                test[i][j]=temp;
+                }
+            }
+        System.out.println(test);
+
+
+        for (int i=0;i<26;i++){
+            for (int j = 0; j < 26; ++j) {
+                System.out.println(test[i][j]);
             }
         }
     }
