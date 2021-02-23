@@ -7,27 +7,34 @@ public class xorCipher {
     private String out;
     private String guess;
     private String alphabet = "abcdefghijklmnopqrstuvwxyz";
+
     xorCipher(String in, String key){
         this.in=in;
         this.key=key;
-        if (in.length() != key.length()){
-            System.out.println("Please enter a correct key");
-        }
-        else {
-            encrypt();
-            finish();
-            // table();
-        }
+        encrypt();
+        finish();
         return;
     }
 
-    public void encrypt(){
-
-
+    public String encrypt(){
+        String temp = "";
+        int temp2=0;
+    for(int i=0;i<in.length();i++){
+        int temp3 =in.charAt(i) ^ key.charAt(temp2);
+        temp +=String.format("%02x",(byte) temp3);
+        temp2++;
+        if (temp2>=key.length()){
+            temp2=0;
+        }
 
     }
-    public void finish(){
+    return temp;
+    }
 
+    public void finish(){
+        System.out.println("Plain Text: "+ in);
+        System.out.println("Key: " + key);
+        System.out.println("Encrypted: " +encrypt().toLowerCase());
     }
 
 }
